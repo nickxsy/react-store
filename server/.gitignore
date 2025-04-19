@@ -1,0 +1,13 @@
+/build
+/node_modules
+*storybook.log
+storybook-static
+.loki/report.html
+.loki/report.json
+.vscode
+.loki
+extractedTranslations
+# Local Netlify folder
+.netlify
+README-DEV.MD
+.env
