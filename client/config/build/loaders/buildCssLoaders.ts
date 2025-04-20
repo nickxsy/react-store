@@ -19,7 +19,8 @@ export function buildCssLoaders(isDev: boolean) {
         loader: "sass-loader",
         options: {
           api: "modern",
-        }},
+        },
+      },
     ],
   };
 }

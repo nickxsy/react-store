@@ -5,5 +5,9 @@ module.exports = {
       ("@babel/preset-react", { runtime: "automatic" })
     ],
   ],
-  plugins: ["i18next-extract"],
+
+  plugins: ["i18next-extract", "@babel/plugin-proposal-class-properties"],
+  assumptions: {
+    setPublicClassFields: false,
+  },
 };

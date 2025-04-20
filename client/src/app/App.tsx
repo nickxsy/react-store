@@ -1,9 +1,14 @@
-function App() {
+import { MantineProvider } from "@mantine/core";
+import { AppProvider } from "./app-provider";
+import { AppRouter } from "./app-router";
+import "./index.scss";
+
+export default function App() {
   return (
-    <div>
-      <div>Reacasdt Hello</div>
-    </div>
+    <AppProvider>
+      <MantineProvider>
+        <AppRouter />
+      </MantineProvider>
+    </AppProvider>
   );
 }
-
-export default App;
