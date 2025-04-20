@@ -5,11 +5,15 @@ import { UiLayout } from "@/shared/ui/ui-layout";
 import { Navigate } from "react-router";
 
 export function ProtectedLayout() {
-  const { isAuth } = useUserDeps();
+  const user = useUserDeps();
 
-  if (!isAuth) {
+  if (!user.isAuth) {
     return <Navigate to={PUBLIC_ROUTES_PATH.SIGNIN} replace />;
   }
 
-  return <UiLayout isAuth={isAuth} />;
+  if (user.user?.role !== "ADMIN") {
+    return <Navigate to={PUBLIC_ROUTES_PATH.SHOP} replace />;
+  }
+
+  return <UiLayout />;
 }

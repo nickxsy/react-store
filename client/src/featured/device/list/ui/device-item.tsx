@@ -5,7 +5,7 @@ import { Link } from "react-router";
 export function DeviceItem({ device }: { device: Device }) {
   return (
     <Link to={`/device/${device.id}`}>
-      <Card shadow="sm" padding="lg" radius="md" withBorder>
+      <Card padding="lg" radius="md" withBorder>
         <Card.Section>
           <Image
             src={`http://localhost:5000/${device.img}`}

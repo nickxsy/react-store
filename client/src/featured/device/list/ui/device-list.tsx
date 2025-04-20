@@ -10,12 +10,9 @@ function DeviceListLayout() {
 
   useEffect(() => {
     deviceRepository.getAll().then((device) => {
-      console.log(device.data.rows);
       devices.setDevices(device.data.rows);
     });
   }, []);
-
-  console.log(devices.devices);
 
   return (
     <SimpleGrid cols={3}>

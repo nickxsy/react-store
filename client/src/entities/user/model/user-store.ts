@@ -3,17 +3,17 @@ import { User } from "./types";
 
 export interface IUserStore {
   isAuth: boolean;
-  user: User | {};
+  user: User;
   setIsAuth: (bool: boolean) => void;
-  setUser: (user: unknown) => void;
+  setUser: (user: User | {}) => void;
 }
 
 class UserStore implements IUserStore {
   private _isAuth: boolean;
-  private _user: User | {};
+  private _user: User;
 
   constructor() {
-    this._isAuth = true;
+    this._isAuth = false;
     this._user = {};
     makeAutoObservable(this);
   }

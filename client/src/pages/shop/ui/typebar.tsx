@@ -1,7 +1,8 @@
 import { typeRepository } from "@/entities/type";
 import { useDeviceDeps } from "@/featured/device/deps";
+import { Box, Chip, Flex, Group, Title } from "@mantine/core";
 import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function TypebarLayout() {
   const devices = useDeviceDeps();
@@ -13,22 +14,23 @@ function TypebarLayout() {
   }, []);
 
   return (
-    <div>
-      {devices.types.map((type) => (
-        <div
-          style={
-            type.id === devices.selectedType.id
-              ? { padding: "5px", color: "white", backgroundColor: "black" }
-              : {}
-          }
-          data-active={type.id === devices.selectedType.id}
-          onClick={() => devices.setSelectedType(type)}
-          key={type.id}
-        >
-          {type.name}
-        </div>
-      ))}
-    </div>
+    <Flex px="md" w={300} variant="outline" gap="md" direction="column">
+      <Title order={3}>Выберите тип</Title>
+      <Chip.Group multiple={false}>
+        <Flex direction="column" gap="xs">
+          {devices.types.map((type) => (
+            <Chip
+              checked={type.id === devices.selectedType.id}
+              value={type.name}
+              onClick={() => devices.setSelectedType(type)}
+              key={type.id}
+            >
+              {type.name}
+            </Chip>
+          ))}
+        </Flex>
+      </Chip.Group>
+    </Flex>
   );
 }
 

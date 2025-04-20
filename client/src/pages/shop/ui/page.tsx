@@ -5,13 +5,16 @@ import { DeviceList } from "@/featured/device/list";
 
 export default function Page() {
   return (
-    <>
-      <Title>Магазин</Title>
-      <Flex gap="lg">
-        <Typebar />
-        <Brandbar />
+    <Flex gap="xl">
+      <Typebar />
+      <Flex gap="xl" direction="column">
+        <Title>Магазин</Title>
+
+        <Flex gap="lg">
+          <Brandbar />
+        </Flex>
+        <DeviceList />
       </Flex>
-      <DeviceList />
-    </>
+    </Flex>
   );
 }
