@@ -12,13 +12,7 @@ import { Form, useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
 import { useDeviceDeps } from "../../deps";
 
-export function CreateDeviceModal({
-  children,
-  trigger,
-}: {
-  children: React.ReactNode;
-  trigger: React.ReactNode;
-}) {
+export function CreateDeviceModal({ trigger }: { trigger: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
   const device = useDeviceDeps();
 

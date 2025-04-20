@@ -10,13 +10,7 @@ import { Form, useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
 
-export function CreateBrandModal({
-  children,
-  trigger,
-}: {
-  children: React.ReactNode;
-  trigger: React.ReactNode;
-}) {
+export function CreateBrandModal({ trigger }: { trigger: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
   const [value, setValue] = useState("");
 

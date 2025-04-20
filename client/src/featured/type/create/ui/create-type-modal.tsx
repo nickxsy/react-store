@@ -9,13 +9,7 @@ import {
 import { Form, useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
 
-export function CreateTypeModal({
-  children,
-  trigger,
-}: {
-  children: React.ReactNode;
-  trigger: React.ReactNode;
-}) {
+export function CreateTypeModal({ trigger }: { trigger: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
 
   const typeCreate = async (name: string) => {

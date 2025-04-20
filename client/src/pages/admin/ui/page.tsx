@@ -6,11 +6,9 @@ import { Flex } from "@mantine/core";
 export default function Page() {
   return (
     <Flex direction="column" gap="md">
-      <CreateTypeModal trigger={<div>Создать тип</div>}>ad</CreateTypeModal>
-      <CreateBrandModal trigger={<div>Создать бренд</div>}>ad</CreateBrandModal>
-      <CreateDeviceModal trigger={<div>Создать устройство</div>}>
-        ad
-      </CreateDeviceModal>
+      <CreateTypeModal trigger={<div>Создать тип</div>} />
+      <CreateBrandModal trigger={<div>Создать бренд</div>} />
+      <CreateDeviceModal trigger={<div>Создать устройство</div>} />
     </Flex>
   );
 }
