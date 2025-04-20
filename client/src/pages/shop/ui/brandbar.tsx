@@ -1,8 +1,16 @@
+import { brandRepository } from "@/entities/brand";
 import { useDeviceDeps } from "@/featured/device/deps";
 import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
 
 function BrandbarLayout() {
   const devices = useDeviceDeps();
+
+  useEffect(() => {
+    brandRepository.getAll().then((brands) => {
+      devices.setBrands(brands);
+    });
+  }, []);
 
   return (
     <div>

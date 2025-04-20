@@ -9,6 +9,9 @@ export interface IDeviceStore {
   selectedBrand: { id?: number; name?: string };
   setSelectedType: (type: any) => void;
   setSelectedBrand: (brand: any) => void;
+  setTypes: any;
+  setBrands: any;
+  setDevices: any;
 }
 
 class DeviceStore implements IDeviceStore {
@@ -19,52 +22,26 @@ class DeviceStore implements IDeviceStore {
   _selectedBrand: { id?: number; name?: string };
 
   constructor() {
-    this._types = [
-      { id: 1, name: "Type 1" },
-      { id: 2, name: "Type 2" },
-      { id: 3, name: "Type 3" },
-      { id: 4, name: "Type 4" },
-    ];
-    this._brands = [
-      { id: 1, name: "Brand 1" },
-      { id: 2, name: "Brand 2" },
-      { id: 3, name: "Brand 3" },
-      { id: 4, name: "Brand 4" },
-    ];
-    this._devices = [
-      {
-        id: 1,
-        name: "Device 1",
-        price: 100,
-        rating: 4,
-        img: "https://via.placeholder.com/150",
-        typeId: 1,
-        brandId: 1,
-      },
-      {
-        id: 2,
-        name: "Device 2",
-        price: 100,
-        rating: 4,
-        img: "https://via.placeholder.com/150",
-        typeId: 1,
-        brandId: 1,
-      },
-      {
-        id: 3,
-        name: "Device 3",
-        price: 100,
-        rating: 4,
-        img: "https://via.placeholder.com/150",
-        typeId: 1,
-        brandId: 1,
-      },
-    ];
+    this._types = [];
+    this._brands = [];
+    this._devices = [];
 
     this._selectedType = {};
     this._selectedBrand = {};
 
     makeAutoObservable(this);
+  }
+
+  setTypes(types: any) {
+    this._types = types;
+  }
+
+  setBrands(brands: any) {
+    this._brands = brands;
+  }
+
+  setDevices(devices: any) {
+    this._devices = devices;
   }
 
   get types() {
@@ -73,6 +50,7 @@ class DeviceStore implements IDeviceStore {
   get brands() {
     return this._brands;
   }
+
   get devices() {
     return this._devices;
   }

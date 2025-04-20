@@ -1,8 +1,16 @@
+import { typeRepository } from "@/entities/type";
 import { useDeviceDeps } from "@/featured/device/deps";
 import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
 
 function TypebarLayout() {
   const devices = useDeviceDeps();
+
+  useEffect(() => {
+    typeRepository.getAll().then((types) => {
+      devices.setTypes(types);
+    });
+  }, []);
 
   return (
     <div>

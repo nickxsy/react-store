@@ -7,7 +7,11 @@ export function DeviceItem({ device }: { device: Device }) {
     <Link to={`/device/${device.id}`}>
       <Card shadow="sm" padding="lg" radius="md" withBorder>
         <Card.Section>
-          <Image src={device.img} height={160} alt={device.name} />
+          <Image
+            src={`http://localhost:5000/${device.img}`}
+            height={160}
+            alt={device.name}
+          />
         </Card.Section>
 
         <Group justify="space-between" mt="md" mb="xs">

@@ -1,3 +1,4 @@
+import { typeRepository } from "@/entities/type";
 import {
   Button,
   Flex,
@@ -17,6 +18,14 @@ export function CreateTypeModal({
 }) {
   const [opened, { open, close }] = useDisclosure(false);
 
+  const typeCreate = async (name: string) => {
+    try {
+      await typeRepository.create(name);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
@@ -24,20 +33,20 @@ export function CreateTypeModal({
     },
 
     validate: {
-      name: (value) =>
+      name: (value: string) =>
         value.length < 2 ? "Название должно быть больше 2 символов" : null,
     },
   });
 
   return (
     <>
-      <MantineModal opened={opened} onClose={close} title="Добавить бренд">
-        <Form form={form}>
+      <MantineModal opened={opened} onClose={close} title="Добавить тип">
+        <Form form={form} onSubmit={({ name }) => typeCreate(name)}>
           <Flex direction="column" gap="md">
             <TextInput
               withAsterisk
-              label="Название бренда"
-              placeholder="Введите название бренда"
+              label="Название типа"
+              placeholder="Введите название типа"
               key={form.key("name")}
               {...form.getInputProps("name")}
             />
@@ -45,7 +54,7 @@ export function CreateTypeModal({
               <Button variant="light" type="button" onClick={close}>
                 Закрыть
               </Button>
-              <Button type="submit">Добавить бренд</Button>
+              <Button type="submit">Добавить тип</Button>
             </Group>
           </Flex>
         </Form>

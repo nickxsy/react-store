@@ -1,3 +1,5 @@
+import { userRepository } from "@/entities/user";
+import { useUserDeps } from "@/featured/user/deps";
 import { ROUTES_PATH } from "@/shared/const";
 import {
   Anchor,
@@ -5,7 +7,6 @@ import {
   Button,
   Card,
   Center,
-  Checkbox,
   Container,
   Flex,
   Group,
@@ -15,12 +16,32 @@ import {
   Title,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { Link, NavLink, useLocation } from "react-router";
+import { Link, redirect, useLocation, useNavigate } from "react-router";
 
 export default function Page() {
   const location = useLocation();
+  const user = useUserDeps();
+  const navigate = useNavigate();
 
   const isSignin = location.pathname === ROUTES_PATH.SIGNIN;
+
+  const signin = async (email: string, password: string) => {
+    try {
+      let data = null;
+
+      if (isSignin) {
+        data = await userRepository.login(email, password);
+      } else {
+        data = await userRepository.registration(email, password);
+      }
+
+      user.setUser(data);
+      user.setIsAuth(true);
+      navigate("/", { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const form = useForm({
     mode: "uncontrolled",
@@ -32,7 +53,7 @@ export default function Page() {
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Невалидная почта"),
       password: (value) =>
-        value.length < 6 ? "Пароль должен быть больше 6 символов" : null,
+        value.length < 1 ? "Пароль должен быть больше 1 символа" : null,
     },
   });
 
@@ -40,12 +61,14 @@ export default function Page() {
     <Container size={600}>
       <Card padding="lg" radius="md" withBorder>
         <Center>
-          <Title order={2}>{isSignin ? "Авторизация" : "Регистрация"}</Title>
+          <Title order={2}>{isSignin ? "Войти" : "Регистрация"}</Title>
         </Center>
         <Box
           mt="md"
           component="form"
-          onSubmit={form.onSubmit((values) => console.log(values))}
+          onSubmit={form.onSubmit(({ email, password }) =>
+            signin(email, password)
+          )}
         >
           <Flex gap="md" direction="column">
             <TextInput

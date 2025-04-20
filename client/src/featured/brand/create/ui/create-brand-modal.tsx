@@ -1,3 +1,4 @@
+import { brandRepository } from "@/entities/brand";
 import {
   Button,
   Flex,
@@ -7,6 +8,7 @@ import {
 } from "@mantine/core";
 import { Form, useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
+import { useState } from "react";
 
 export function CreateBrandModal({
   children,
@@ -16,6 +18,17 @@ export function CreateBrandModal({
   trigger: React.ReactNode;
 }) {
   const [opened, { open, close }] = useDisclosure(false);
+  const [value, setValue] = useState("");
+
+  const brandCreate = async (name: string) => {
+    try {
+      await brandRepository.create(name);
+      close();
+      form.reset();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const form = useForm({
     mode: "uncontrolled",
@@ -24,7 +37,7 @@ export function CreateBrandModal({
     },
 
     validate: {
-      name: (value) =>
+      name: (value: string) =>
         value.length < 2 ? "Название должно быть больше 2 символов" : null,
     },
   });
@@ -32,7 +45,7 @@ export function CreateBrandModal({
   return (
     <>
       <MantineModal opened={opened} onClose={close} title="Добавить бренд">
-        <Form form={form}>
+        <Form form={form} onSubmit={({ name }) => brandCreate(name)}>
           <Flex direction="column" gap="md">
             <TextInput
               withAsterisk

@@ -4,11 +4,11 @@ import { UiHeader } from "./ui-header";
 
 export function UiLayout({ isAuth }: { isAuth: boolean }) {
   return (
-    <div>
+    <>
       <UiHeader isAuth={isAuth} />
-      <Container py="lg">
+      <Container component="main" py="lg">
         <Outlet />
       </Container>
-    </div>
+    </>
   );
 }
