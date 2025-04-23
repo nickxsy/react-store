@@ -1,8 +1,9 @@
-import { useUserDeps } from "@/featured/user/deps";
-import { PUBLIC_ROUTES_PATH } from "@/shared/const";
+import { Navigate } from 'react-router';
 
-import { UiLayout } from "@/shared/ui/ui-layout";
-import { Navigate } from "react-router";
+import { PUBLIC_ROUTES_PATH } from '@/shared/const';
+import { UiLayout } from '@/shared/ui/ui-layout';
+
+import { useUserDeps } from '@/featured/user/deps';
 
 export function ProtectedLayout() {
   const user = useUserDeps();
@@ -11,7 +12,7 @@ export function ProtectedLayout() {
     return <Navigate to={PUBLIC_ROUTES_PATH.SIGNIN} replace />;
   }
 
-  if (user.user?.role !== "ADMIN") {
+  if (user.user?.role !== 'ADMIN') {
     return <Navigate to={PUBLIC_ROUTES_PATH.SHOP} replace />;
   }
 

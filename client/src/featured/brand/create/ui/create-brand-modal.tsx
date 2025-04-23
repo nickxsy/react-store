@@ -1,18 +1,19 @@
-import { brandRepository } from "@/entities/brand";
 import {
   Button,
   Flex,
   Group,
   Modal as MantineModal,
-  TextInput,
-} from "@mantine/core";
-import { Form, useForm } from "@mantine/form";
-import { useDisclosure } from "@mantine/hooks";
-import { useState } from "react";
+  TextInput
+} from '@mantine/core';
+import { Form, useForm } from '@mantine/form';
+import { useDisclosure } from '@mantine/hooks';
+import { useState } from 'react';
+
+import { brandRepository } from '@/entities/brand';
 
 export function CreateBrandModal({ trigger }: { trigger: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
 
   const brandCreate = async (name: string) => {
     try {
@@ -25,28 +26,33 @@ export function CreateBrandModal({ trigger }: { trigger: React.ReactNode }) {
   };
 
   const form = useForm({
-    mode: "uncontrolled",
+    mode: 'uncontrolled',
     initialValues: {
-      name: "",
+      name: ''
     },
 
     validate: {
       name: (value: string) =>
-        value.length < 2 ? "Название должно быть больше 2 символов" : null,
-    },
+        value.length < 2 ? 'Название должно быть больше 2 символов' : null
+    }
   });
 
   return (
     <>
-      <MantineModal opened={opened} onClose={close} title="Добавить бренд">
+      <MantineModal
+        centered
+        opened={opened}
+        onClose={close}
+        title="Добавить бренд"
+      >
         <Form form={form} onSubmit={({ name }) => brandCreate(name)}>
           <Flex direction="column" gap="md">
             <TextInput
               withAsterisk
               label="Название бренда"
               placeholder="Введите название бренда"
-              key={form.key("name")}
-              {...form.getInputProps("name")}
+              key={form.key('name')}
+              {...form.getInputProps('name')}
             />
             <Group gap="xs">
               <Button variant="light" type="button" onClick={close}>

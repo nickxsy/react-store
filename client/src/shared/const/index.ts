@@ -1,1 +1,1 @@
-export { PUBLIC_ROUTES_PATH, AUTH_ROUTES_PATH, ROUTES_PATH } from "./routes";
+export { PUBLIC_ROUTES_PATH, AUTH_ROUTES_PATH, ROUTES_PATH } from './routes';

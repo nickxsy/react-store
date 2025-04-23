@@ -1,1 +1,1 @@
-export { brandRepository } from "./model/brand-repository";
+export { brandRepository } from './model/brand-repository';

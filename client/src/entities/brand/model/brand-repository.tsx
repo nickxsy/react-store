@@ -1,16 +1,16 @@
-import { authApi, publicApi } from "@/shared/api";
+import { authApi, publicApi } from '@/shared/api';
 
 class BrandRepository {
   async create(name: string) {
-    const { data } = await authApi.post("/api/brand", {
-      name,
+    const { data } = await authApi.post('/api/brand', {
+      name
     });
 
     return data;
   }
 
   async getAll() {
-    const { data } = await publicApi.get("/api/brand");
+    const { data } = await publicApi.get('/api/brand');
 
     return data;
   }

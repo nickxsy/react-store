@@ -7,3 +7,10 @@ export type Device = {
   typeId: number;
   brandId: number;
 };
+
+export type CreateDeviceData = {
+  brand: string;
+  name: string;
+  price: number;
+  type: string;
+};

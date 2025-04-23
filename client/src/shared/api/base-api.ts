@@ -1,17 +1,17 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API_URL = "http://localhost:5000";
+const API_URL = 'http://localhost:5000';
 
 const publicApi = axios.create({
-  baseURL: API_URL,
+  baseURL: API_URL
 });
 
 const authApi = axios.create({
-  baseURL: API_URL,
+  baseURL: API_URL
 });
 
 const authInterceptor = (config: any) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
   return config;
 };
 

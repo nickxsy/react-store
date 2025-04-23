@@ -1,1 +1,1 @@
-export { typeRepository } from "./model/type-repository";
+export { typeRepository } from './model/type-repository';

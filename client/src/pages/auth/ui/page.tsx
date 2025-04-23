@@ -1,6 +1,3 @@
-import { userRepository } from "@/entities/user";
-import { useUserDeps } from "@/featured/user/deps";
-import { ROUTES_PATH } from "@/shared/const";
 import {
   Anchor,
   Box,
@@ -13,10 +10,16 @@ import {
   PasswordInput,
   Text,
   TextInput,
-  Title,
-} from "@mantine/core";
-import { useForm } from "@mantine/form";
-import { Link, redirect, useLocation, useNavigate } from "react-router";
+  Title
+} from '@mantine/core';
+import { useForm } from '@mantine/form';
+import { Link, redirect, useLocation, useNavigate } from 'react-router';
+
+import { ROUTES_PATH } from '@/shared/const';
+
+import { userRepository } from '@/entities/user';
+
+import { useUserDeps } from '@/featured/user/deps';
 
 export default function Page() {
   const location = useLocation();
@@ -37,31 +40,31 @@ export default function Page() {
 
       user.setUser(data);
       user.setIsAuth(true);
-      navigate("/", { replace: true });
-    } catch (error) {
-      console.log(error);
+      navigate('/', { replace: true });
+    } catch (error: any) {
+      alert(error.response.data.message);
     }
   };
 
   const form = useForm({
-    mode: "uncontrolled",
+    mode: 'uncontrolled',
     initialValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: ''
     },
 
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Невалидная почта"),
-      password: (value) =>
-        value.length < 1 ? "Пароль должен быть больше 1 символа" : null,
-    },
+      email: value => (/^\S+@\S+$/.test(value) ? null : 'Невалидная почта'),
+      password: value =>
+        value.length < 1 ? 'Пароль должен быть больше 1 символа' : null
+    }
   });
 
   return (
     <Container size={600}>
       <Card padding="lg" radius="md" withBorder>
         <Center>
-          <Title order={2}>{isSignin ? "Войти" : "Регистрация"}</Title>
+          <Title order={2}>{isSignin ? 'Войти' : 'Регистрация'}</Title>
         </Center>
         <Box
           mt="md"
@@ -75,36 +78,36 @@ export default function Page() {
               withAsterisk
               label="Email"
               placeholder="your@email.com"
-              key={form.key("email")}
-              {...form.getInputProps("email")}
+              key={form.key('email')}
+              {...form.getInputProps('email')}
             />
             <PasswordInput
               withAsterisk
               type="password"
               label="Пароль"
               placeholder="Введите пароль"
-              key={form.key("password")}
-              {...form.getInputProps("password")}
+              key={form.key('password')}
+              {...form.getInputProps('password')}
             />
           </Flex>
           <Group justify="space-between" mt="md">
             {isSignin ? (
               <Text>
-                Нет аккаунта?{" "}
+                Нет аккаунта?{' '}
                 <Link to={ROUTES_PATH.SIGNUP}>
                   <Anchor component="span">Зарегистрироваться</Anchor>
                 </Link>
               </Text>
             ) : (
               <Text>
-                Есть аккаунт?{" "}
+                Есть аккаунт?{' '}
                 <Link to={ROUTES_PATH.SIGNIN}>
                   <Anchor component="span">Войти</Anchor>
                 </Link>
               </Text>
             )}
             <Button type="submit">
-              {isSignin ? "Войти" : "Зарегистрироваться"}
+              {isSignin ? 'Войти' : 'Зарегистрироваться'}
             </Button>
           </Group>
         </Box>

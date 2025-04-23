@@ -1,1 +1,1 @@
-export { PageAsync as DevicePage } from "./ui/page.async";
+export { PageAsync as DevicePage } from './ui/page.async';

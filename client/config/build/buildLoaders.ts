@@ -1,7 +1,9 @@
-import webpack from "webpack";
+import webpack from 'webpack';
+
 // import { buildBabelLoaders } from "./loaders/buildBabelLoaders";
-import { buildCssLoaders } from "./loaders/buildCssLoaders";
-import { BuildOptions } from "./types/config";
+import { buildCssLoaders } from './loaders/buildCssLoaders';
+import { BuildOptions } from './types/config';
+
 export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
   const { isDev } = options;
 
@@ -12,22 +14,22 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     test: /\.(png|jpe?g|gif)$/i,
     use: [
       {
-        loader: "file-loader",
-      },
-    ],
+        loader: 'file-loader'
+      }
+    ]
   };
 
   const svgLoader = {
     test: /\.svg$/,
-    use: ["@svgr/webpack"],
+    use: ['@svgr/webpack']
   };
 
   const cssLoader = buildCssLoaders(isDev);
 
   const typescriptLoader = {
     test: /\.tsx?$/,
-    use: "ts-loader",
-    exclude: /node_modules/,
+    use: 'ts-loader',
+    exclude: /node_modules/
   };
 
   return [
@@ -36,6 +38,6 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     // codeBabelLoader,
     // tsxCodeBabelLoader,
     typescriptLoader,
-    cssLoader,
+    cssLoader
   ];
 }

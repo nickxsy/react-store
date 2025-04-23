@@ -1,11 +1,12 @@
-import { makeAutoObservable } from "mobx";
-import { User } from "./types";
+import { makeAutoObservable } from 'mobx';
+
+import { User } from './types';
 
 export interface IUserStore {
   isAuth: boolean;
   user: User;
   setIsAuth: (bool: boolean) => void;
-  setUser: (user: User | {}) => void;
+  setUser: (user: any) => void;
 }
 
 class UserStore implements IUserStore {
@@ -26,9 +27,9 @@ class UserStore implements IUserStore {
     return this._user;
   }
 
-  setIsAuth(bool: boolean) {
+  setIsAuth = (bool: boolean): void => {
     this._isAuth = bool;
-  }
+  };
 
   setUser(user: any) {
     this._user = user;

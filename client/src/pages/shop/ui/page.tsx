@@ -1,7 +1,10 @@
-import { Flex, Title } from "@mantine/core";
-import { Typebar } from "./typebar";
-import { Brandbar } from "./brandbar";
-import { DeviceList } from "@/featured/device/list";
+import { Flex, Title } from '@mantine/core';
+
+import { Pages } from '@/widgets/pages';
+
+import { Brandbar } from './brandbar';
+import { Typebar } from './typebar';
+import { DeviceList } from '@/featured/device/list';
 
 export default function Page() {
   return (
@@ -14,6 +17,7 @@ export default function Page() {
           <Brandbar />
         </Flex>
         <DeviceList />
+        <Pages />
       </Flex>
     </Flex>
   );

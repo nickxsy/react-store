@@ -1,14 +1,17 @@
-import { AdminPage } from "@/pages/admin";
-import { AuthPage } from "@/pages/auth";
-import { BasketPage } from "@/pages/basket";
-import { DevicePage } from "@/pages/device";
-import { NotfoundPage } from "@/pages/notfound";
-import { ShopPage } from "@/pages/shop";
-import { AUTH_ROUTES_PATH, PUBLIC_ROUTES_PATH } from "@/shared/const";
-import { AppLayout } from "@/widgets/app-layout";
-import { ProtectedLayout } from "@/widgets/protected-layout";
-import { Suspense } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { Suspense } from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router';
+
+import { AdminPage } from '@/pages/admin';
+import { AuthPage } from '@/pages/auth';
+import { BasketPage } from '@/pages/basket';
+import { DevicePage } from '@/pages/device';
+import { NotfoundPage } from '@/pages/notfound';
+import { ShopPage } from '@/pages/shop';
+
+import { AppLayout } from '@/widgets/app-layout';
+import { ProtectedLayout } from '@/widgets/protected-layout';
+
+import { AUTH_ROUTES_PATH, PUBLIC_ROUTES_PATH } from '@/shared/const';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +23,7 @@ const router = createBrowserRouter([
           <Suspense>
             <ShopPage />
           </Suspense>
-        ),
+        )
       },
       {
         path: PUBLIC_ROUTES_PATH.DEVICE,
@@ -28,7 +31,7 @@ const router = createBrowserRouter([
           <Suspense>
             <DevicePage />
           </Suspense>
-        ),
+        )
       },
       {
         path: PUBLIC_ROUTES_PATH.SIGNIN,
@@ -36,7 +39,7 @@ const router = createBrowserRouter([
           <Suspense>
             <AuthPage />
           </Suspense>
-        ),
+        )
       },
       {
         path: PUBLIC_ROUTES_PATH.SIGNUP,
@@ -44,7 +47,7 @@ const router = createBrowserRouter([
           <Suspense>
             <AuthPage />
           </Suspense>
-        ),
+        )
       },
       {
         path: PUBLIC_ROUTES_PATH.NOT_FOUND,
@@ -52,9 +55,9 @@ const router = createBrowserRouter([
           <Suspense>
             <NotfoundPage />
           </Suspense>
-        ),
-      },
-    ],
+        )
+      }
+    ]
   },
   {
     element: <ProtectedLayout />,
@@ -65,7 +68,7 @@ const router = createBrowserRouter([
           <Suspense>
             <AdminPage />
           </Suspense>
-        ),
+        )
       },
       {
         path: AUTH_ROUTES_PATH.BASKET,
@@ -73,10 +76,10 @@ const router = createBrowserRouter([
           <Suspense>
             <BasketPage />
           </Suspense>
-        ),
-      },
-    ],
-  },
+        )
+      }
+    ]
+  }
 ]);
 
 export function AppRouter() {

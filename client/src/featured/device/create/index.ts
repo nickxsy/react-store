@@ -1,1 +1,1 @@
-export { CreateDeviceModal } from "./ui/create-device-modal";
+export { CreateDeviceModal } from './ui/create-device-modal';

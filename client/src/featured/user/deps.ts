@@ -1,5 +1,6 @@
-import { IUserStore, User, userStore } from "@/entities/user";
-import { createStrictContext, useStrictContext } from "@/shared/lib/react";
+import { createStrictContext, useStrictContext } from '@/shared/lib/react';
+
+import type { IUserStore } from '@/entities/user';
 
 export const userDepsContext = createStrictContext<IUserStore>();
 

@@ -1,6 +1,7 @@
-import { Device } from "@/entities/device";
-import { Card, Image, Text, Button, Group, Badge } from "@mantine/core";
-import { Link } from "react-router";
+import { Badge, Button, Card, Group, Image, Text } from '@mantine/core';
+import { Link } from 'react-router';
+
+import { Device } from '@/entities/device';
 
 export function DeviceItem({ device }: { device: Device }) {
   return (

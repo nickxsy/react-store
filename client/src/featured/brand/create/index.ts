@@ -1,1 +1,1 @@
-export { CreateBrandModal } from "./ui/create-brand-modal";
+export { CreateBrandModal } from './ui/create-brand-modal';

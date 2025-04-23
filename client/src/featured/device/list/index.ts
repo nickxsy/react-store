@@ -1,1 +1,1 @@
-export { DeviceList } from "./ui/device-list";
+export { DeviceList } from './ui/device-list';

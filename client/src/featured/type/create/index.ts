@@ -1,1 +1,1 @@
-export { CreateTypeModal } from "./ui/create-type-modal";
+export { CreateTypeModal } from './ui/create-type-modal';

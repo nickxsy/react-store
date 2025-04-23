@@ -1,5 +1,6 @@
-import { BuildOptions } from "./types/config";
-import { Configuration as DevServerConfigurations } from "webpack-dev-server";
+import { Configuration as DevServerConfigurations } from 'webpack-dev-server';
+
+import { BuildOptions } from './types/config';
 
 export function buildDevServer(options: BuildOptions): DevServerConfigurations {
   return {
@@ -7,9 +8,9 @@ export function buildDevServer(options: BuildOptions): DevServerConfigurations {
     open: false,
     historyApiFallback: true,
     headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH",
-    },
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH'
+    }
   };
 }

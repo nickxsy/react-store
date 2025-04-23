@@ -1,25 +1,35 @@
-import { makeAutoObservable } from "mobx";
-import { Device } from "./types";
+import { makeAutoObservable, set } from 'mobx';
+
+import { Device } from './types';
 
 export interface IDeviceStore {
-  types: { id: number; name: string }[];
-  brands: { id: number; name: string }[];
+  types: { id: string; name: string }[];
+  brands: { id: string; name: string }[];
   devices: Device[];
-  selectedType: { id?: number; name?: string };
-  selectedBrand: { id?: number; name?: string };
+  selectedType: { id?: string; name?: string };
+  selectedBrand: { id?: string; name?: string };
   setSelectedType: (type: any) => void;
   setSelectedBrand: (brand: any) => void;
   setTypes: any;
   setBrands: any;
   setDevices: any;
+  page: number;
+  limit: number;
+  totalCount: number;
+  setPage: any;
+  setLimit: any;
+  setTotalCount: any;
 }
 
 class DeviceStore implements IDeviceStore {
-  private _types: { id: number; name: string }[];
-  private _brands: { id: number; name: string }[];
+  private _types: { id: string; name: string }[];
+  private _brands: { id: string; name: string }[];
   private _devices: Device[];
-  _selectedType: { id?: number; name?: string };
-  _selectedBrand: { id?: number; name?: string };
+  _selectedType: { id?: string; name?: string };
+  _selectedBrand: { id?: string; name?: string };
+  _page: number;
+  _limit: number;
+  _totalCount: number;
 
   constructor() {
     this._types = [];
@@ -28,6 +38,9 @@ class DeviceStore implements IDeviceStore {
 
     this._selectedType = {};
     this._selectedBrand = {};
+    this._page = 1;
+    this._totalCount = 1;
+    this._limit = 1;
 
     makeAutoObservable(this);
   }
@@ -56,16 +69,42 @@ class DeviceStore implements IDeviceStore {
   }
 
   setSelectedType(type: any) {
-    return (this._selectedType = type);
+    this.setPage(1);
+    this._selectedType = type;
   }
 
   setSelectedBrand(brand: any) {
-    return (this._selectedBrand = brand);
+    this.setPage(1);
+    this._selectedBrand = brand;
+  }
+
+  setPage(page: number) {
+    this._page = page;
+  }
+
+  setLimit(limit: number) {
+    this._limit = limit;
+  }
+
+  setTotalCount(count: number) {
+    this._totalCount = count;
+  }
+
+  get page() {
+    return this._page;
+  }
+  get limit() {
+    return this._limit;
+  }
+
+  get totalCount() {
+    return this._totalCount;
   }
 
   get selectedType() {
     return this._selectedType;
   }
+
   get selectedBrand() {
     return this._selectedBrand;
   }

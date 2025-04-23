@@ -1,8 +1,10 @@
-import { useUserDeps } from "@/featured/user/deps";
-import { Button, Flex, Group } from "@mantine/core";
-import { observer } from "mobx-react-lite";
-import { NavLink, useNavigate } from "react-router";
-import { AUTH_ROUTES_PATH, PUBLIC_ROUTES_PATH, ROUTES_PATH } from "../const";
+import { Button, Flex, Group } from '@mantine/core';
+import { observer } from 'mobx-react-lite';
+import { NavLink, useNavigate } from 'react-router';
+
+import { AUTH_ROUTES_PATH, PUBLIC_ROUTES_PATH, ROUTES_PATH } from '../const';
+
+import { useUserDeps } from '@/featured/user/deps';
 
 export const UiHeader = observer(() => {
   const user = useUserDeps();
@@ -11,7 +13,7 @@ export const UiHeader = observer(() => {
   const logout = () => {
     user.setUser({});
     user.setIsAuth(false);
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     navigate(ROUTES_PATH.SIGNIN, { replace: true });
   };
 
@@ -21,7 +23,7 @@ export const UiHeader = observer(() => {
         <NavLink to={PUBLIC_ROUTES_PATH.SHOP}>
           <Button component="div">Магазин</Button>
         </NavLink>
-        {user.isAuth && user.user?.role === "ADMIN" && (
+        {user.isAuth && user.user?.role === 'ADMIN' && (
           <NavLink to={AUTH_ROUTES_PATH.ADMIN}>
             <Button component="div">Админка</Button>
           </NavLink>

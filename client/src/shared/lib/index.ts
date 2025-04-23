@@ -2,5 +2,5 @@ export {
   useStrictContext,
   createStrictContext,
   useAppearanceDelay,
-  ComposeChildren,
-} from "./react";
+  ComposeChildren
+} from './react';

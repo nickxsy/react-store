@@ -1,30 +1,31 @@
-import { authApi, publicApi } from "@/shared/api";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
+
+import { authApi, publicApi } from '@/shared/api';
 
 class UserRepository {
   async registration(email: string, password: string) {
-    const { data } = await publicApi.post("/api/user/registration", {
+    const { data } = await publicApi.post('/api/user/registration', {
       email,
       password,
-      role: "USER",
+      role: 'USER'
     });
 
-    localStorage.setItem("token", data.token);
+    localStorage.setItem('token', data.token);
     return jwtDecode(data.token);
   }
 
   async login(email: string, password: string) {
-    const { data } = await publicApi.post("/api/user/login", {
+    const { data } = await publicApi.post('/api/user/login', {
       email,
-      password,
+      password
     });
 
-    localStorage.setItem("token", data.token);
+    localStorage.setItem('token', data.token);
     return jwtDecode(data.token);
   }
   async auth() {
-    const { data } = await authApi.get("/api/user/auth");
-    localStorage.setItem("token", data.token);
+    const { data } = await authApi.get('/api/user/auth');
+    localStorage.setItem('token', data.token);
     return jwtDecode(data.token);
   }
 }

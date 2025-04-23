@@ -1,7 +1,8 @@
-import { CreateBrandModal } from "@/featured/brand/create";
-import { CreateDeviceModal } from "@/featured/device/create";
-import { CreateTypeModal } from "@/featured/type/create";
-import { Flex } from "@mantine/core";
+import { Flex } from '@mantine/core';
+
+import { CreateBrandModal } from '@/featured/brand/create';
+import { CreateDeviceModal } from '@/featured/device/create';
+import { CreateTypeModal } from '@/featured/type/create';
 
 export default function Page() {
   return (
